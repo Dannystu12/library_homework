@@ -4,6 +4,7 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 
 public class LibraryTest {
 
@@ -14,8 +15,8 @@ public class LibraryTest {
     @Before
     public void setup(){
         library = new Library(1);
-        book1 = new Book();
-        book2 = new Book();
+        book1 = new Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari");
+        book2 = new Book("A Brief History of Time", "Stephen Hawking");
     }
 
     @Test
@@ -48,4 +49,21 @@ public class LibraryTest {
         library.addBook(book2);
         assertEquals(1, library.countBooks());
     }
+
+    @Test
+    public void canRemoveExistingTitle(){
+        library.addBook(book1);
+        Book borrowedBook = library.removeTitle(book1.getTitle());
+        assertEquals(book1, borrowedBook);
+        assertEquals(0, library.countBooks());
+    }
+
+    @Test
+    public void cantRemoveNonExistantTitle(){
+        library.addBook(book1);
+        Book borrowedBook = library.removeTitle(book2.getTitle());
+        assertNull(borrowedBook);
+        assertEquals(1, library.countBooks());
+    }
+
 }

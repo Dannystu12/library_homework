@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Library {
-    private ArrayList<Book> books;
+    private List<Book> books;
     private int capacity;
 
     public Library(int capacity){
@@ -21,5 +22,16 @@ public class Library {
 
     public boolean hasCapacity(){
         return countBooks() < capacity;
+    }
+
+    public Book removeTitle(String title){
+        Book book = null;
+        for(int i = 0; i < books.size(); i++){
+            if(books.get(i).getTitle().equals(title)){
+                book = books.remove(i);
+                break;
+            }
+        }
+        return book;
     }
 }
