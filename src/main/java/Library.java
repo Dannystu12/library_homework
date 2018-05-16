@@ -21,10 +21,8 @@ public class Library {
     public void addBook(Book book){
         if(hasCapacity()) {
             books.add(book);
+            addToGenreCount(book);
         }
-
-        // Add to genre count
-        addToGenreCount(book);
     }
 
     public boolean hasCapacity(){
