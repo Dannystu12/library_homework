@@ -15,8 +15,8 @@ public class LibraryTest {
     @Before
     public void setup(){
         library = new Library(1);
-        book1 = new Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari");
-        book2 = new Book("A Brief History of Time", "Stephen Hawking");
+        book1 = new Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari","Non-fiction");
+        book2 = new Book("A Brief History of Time", "Stephen Hawking", "Non-fiction");
     }
 
     @Test
@@ -64,6 +64,23 @@ public class LibraryTest {
         Book borrowedBook = library.removeTitle(book2.getTitle());
         assertNull(borrowedBook);
         assertEquals(1, library.countBooks());
+    }
+
+    @Test
+    public void canGetGenreCount(){
+        assertEquals(0, library.getGenreCount("Non-fiction"));
+        library.addBook(book1);
+        assertEquals(1, library.getGenreCount("Non-fiction"));
+        library.addBook(book2);
+        assertEquals(2, library.getGenreCount("Non-fiction"));
+    }
+
+    @Test
+    public void canRemoveBookFromGenreCount(){
+        library.addBook(book1);
+        library.addBook(book2);
+        library.removeTitle("Sapiens: A Brief History of Humankind");
+        assertEquals(1, library.getGenreCount("Non-fiction"));
     }
 
 }

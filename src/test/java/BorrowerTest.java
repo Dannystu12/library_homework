@@ -14,8 +14,8 @@ public class BorrowerTest {
     public void setup(){
         borrower = new Borrower();
         library = new Library(2);
-        book1 = new Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari");
-        book2 = new Book("A Brief History of Time", "Stephen Hawking");
+        book1 = new Book("Sapiens: A Brief History of Humankind", "Yuval Noah Harari", "Non-fiction");
+        book2 = new Book("A Brief History of Time", "Stephen Hawking", "Non-fiction");
         library.addBook(book1);
         library.addBook(book2);
     }
